@@ -13,7 +13,9 @@ module.exports = (app) => {
 
     app.use('/admin', is_admin_authenticated(), require('../api/admin'));
 
+    app.use(serveStatic('./public'));
+    
     app.get('/*', (req, res) => {
-       res.sendFile(path.join(__dirname, '..', 'views', '404.html'));
+      res.sendFile(path.join(__dirname, 'public', 'index.html'));
     });
 };
