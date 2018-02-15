@@ -1,4 +1,5 @@
 const path = require('path');
+const serveStatic = require('serve-static');
 
 const { isAuthenticated, is_admin_authenticated } = require('./../auth/auth.middleware');
 
