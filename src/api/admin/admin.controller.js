@@ -3,6 +3,7 @@ const Eval = require('../evals/eval.model');
 const Question = require('../questions/quest.model');
 const Answers = require('../answers/answer.model');
 const Discussion = require('../discussions/discussion.model');
+const Validation = require('../validationTokens/validate.model');
 
 const { generateToken } = require('../../services/tools.service');
 
@@ -308,6 +309,19 @@ module.exports.getAnswers = (req, res) => {
 };
 
 /*
+req.query : {anyField: [fieldType]}
+*/
+module.exports.getValidationTokens = (req, res) => {
+    Validation.find(req.query,
+        (err, tokens) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.status(201).json(tokens);
+    });
+};
+
+/*
 req.body : {email: String, to_update: {fields: fieldTypes}}
 */
 module.exports.updateUser = (req, res) => {
@@ -372,5 +386,95 @@ module.exports.updateAnswers = (req, res) => {
         }
 
         res.status(200).json(info);
+    });
+};
+
+/*
+req.body : {emails: [String]}
+*/
+module.exports.delUser = (req, res) => {
+    console.log(req.body)
+    User.remove({email: req.body.emails},
+        (err) => {
+            if (err) {
+                return res.status(500).json(err);
+            }
+
+            res.status(200).json(err);
+    });
+};
+
+/*
+req.body : {keys: [String]}
+*/
+module.exports.delEval = (req, res) => {
+    console.log(req.body)
+    Eval.remove({key: req.body.keys},
+        (err) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.status(200).json(err);
+    });
+};
+
+/*
+req.body : {ids: [String]}
+*/
+module.exports.delDiscussions = (req, res) => {
+    console.log(req.body)
+    Answers.remove({_id: req.body.ids},
+        (err) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.status(200).json(err);
+    });
+};
+
+/*
+req.body : {ids: [String]}
+*/
+module.exports.delQuestion = (req, res) => {
+    console.log(req.body);
+    Question.remove({_id: req.body.ids},
+        (err) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.status(200).json(err);
+    });
+};
+
+/*
+req.body : {emails: [String]}
+*/
+module.exports.delAnswers = (req, res) => {
+    console.log(req.body)
+    Answers.remove({_id: req.body.emails},
+        (err) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.status(200).json(err);
+    });
+};
+
+/*
+req.body : {tokens: [String]}
+*/
+module.exports.delValidationTokens = (req, res) => {
+    console.log(req.body)
+    Validation.remove({_id: req.body.tokens},
+        (err) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+
+        res.status(200).json(err);
     });
 };
