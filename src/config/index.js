@@ -11,6 +11,7 @@ module.exports = {
     },
     adminEmail: process.env.ADMIN_EMAIL,
     adminPsswd: process.env.ADMIN_PSSWD,
+    BASE_URL: process.env.BASE_URL,
     MAX_LOGIN_ATTEMPTS: 3,
     REQ_NB_QUESTIONS: 10,
     NB_QUESTIONS: 50,

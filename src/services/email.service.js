@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const config = require('../config');
 
 //const url = "https://adeq.rezoleo.fr";
-const url = "http://localhost:9000";
+const url = config.BASE_URL;
 
 // Generate test SMTP service account from ethereal.email
 // Only needed if you don't have a real mail account for testing
