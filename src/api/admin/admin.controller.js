@@ -392,7 +392,7 @@ module.exports.updateAnswers = (req, res) => {
 /*
 req.body : {emails: [String]}
 */
-module.exports.delUser = (req, res) => {
+module.exports.delUsers = (req, res) => {
     console.log(req.body)
     User.remove({email: req.body.emails},
         (err) => {
@@ -407,7 +407,7 @@ module.exports.delUser = (req, res) => {
 /*
 req.body : {keys: [String]}
 */
-module.exports.delEval = (req, res) => {
+module.exports.delEvals = (req, res) => {
     console.log(req.body)
     Eval.remove({key: req.body.keys},
         (err) => {
@@ -437,7 +437,7 @@ module.exports.delDiscussions = (req, res) => {
 /*
 req.body : {ids: [String]}
 */
-module.exports.delQuestion = (req, res) => {
+module.exports.delQuestions = (req, res) => {
     console.log(req.body);
     Question.remove({_id: req.body.ids},
         (err) => {
