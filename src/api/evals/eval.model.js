@@ -1,22 +1,28 @@
 const mongoose = require('mongoose');
 
 const EvalSchema = new mongoose.Schema({
-    host_email: {
+    key: {
         type: String,
-        lowercase: true,
-        trim: true,
         unique: true,
         required: true,
     },
-    guest_email: {
+    eval_email: {
         type: String,
         lowercase: true,
         trim: true,
-        unique: true,
+        unique: false,
         required: true,
     },
-    host_eval: Number,
-    guest_eval: Number
+    target_email: {
+        type: String,
+        lowercase: true,
+        trim: true,
+        unique: false,
+        required: true,
+    },
+    eval: {type: Number, default: 0},
+    activated: {type: Boolean, default: true},
+    updated: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Eval', EvalSchema);

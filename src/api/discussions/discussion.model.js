@@ -9,11 +9,7 @@ const Message = {
 
 const DiscussionSchema = new mongoose.Schema({
     _id: {type: String, required: true},
-    host_fname: {type: String, required: true},
-    guest_fname: {type: String, required: true},
-    messages: [ Message ],
-    host:  {type: String, required: true},
-    guest:  {type: String, required: true},
+    messages: {type: [ Message ], default: []}
 });
 
 module.exports = mongoose.model('Discussion', DiscussionSchema);

@@ -27,16 +27,3 @@ module.exports.find_discussion = (req, res) => {
         res.status(201).json(discussion);
     });
 };
-
-module.exports.create = (req, res) => {
-    const discussion = new Discussion(req.body);
-
-    discussion.save((err) => {
-        if (err) {
-            return res.status(500).json(err);
-        }
-        res.status(201).json(discussion)
-    });
-
-};
-

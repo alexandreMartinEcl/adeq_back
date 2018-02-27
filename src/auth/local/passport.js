@@ -47,6 +47,17 @@ passport.use(
                         );
                     }
 
+                    if (!user.validated) {
+                        return done(
+                            {
+                                status: 403,
+                                code: 'NOT_VALIDATED_USER',
+                                message: 'Votre compte n\'a pas été confirmé. Un mail vous a été envoyé pour le faire. Merci de vous y connecter ou de vous rapprocher de votre administrateur',
+                            },
+                            false
+                        );
+                    }
+
                     if (!user.authenticate(password)) {
                         user.attempts++;
 

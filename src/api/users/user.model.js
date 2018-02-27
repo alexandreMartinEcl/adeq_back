@@ -25,9 +25,7 @@ const UserSchema = new mongoose.Schema({
     },
     pseudo: {
         type: String,
-        lowercase: true,
-        trim: true,
-        required: 'Le nom est obligatoire',
+        default: ""
     },
     //weekly
     current_match: String,
@@ -42,6 +40,12 @@ const UserSchema = new mongoose.Schema({
     salt: {type: String, required: true},
     attempts: {type: Number, default: 0},
     locked: {type: Boolean, default: false},
+    validated: {type: Boolean, default: false}
+});
+
+UserSchema.pre('save', function(next){
+    this.pseudo = this.firstName;
+    next();
 });
 
 // Virtuals
@@ -51,13 +55,6 @@ UserSchema.virtual('password')
         this.salt           = makeSalt();
         this.hashedPassword = encryptPassword(password, this.salt);
     })
-    /*
-    .set(function (password){
-        this.set("_password", password);
-        this.set("salt", makeSalt());
-        this.set("hashedPassword", encryptPassword(password, this.salt));
-    })
-    */
     .get(function () {
         return this._password;
     });
