@@ -3,7 +3,7 @@ const User = require('./user.model');
 const valCtrler = require('../validationTokens/validate.controller');
 
 const emailService = require('../../services/email.service');
-const { generateToken } = require('../../services/email.service');
+const { generateToken } = require('../../services/tools.service');
 
 module.exports = {};
 
