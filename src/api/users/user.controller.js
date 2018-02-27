@@ -45,7 +45,7 @@ module.exports.create_profile = (req, res) => {
 //                            return res.status(500).json(err);
                         }
                 
-                        res.status(201).json(user)
+//                        res.status(201).json(user);
                     });            
                 }
                 else{
