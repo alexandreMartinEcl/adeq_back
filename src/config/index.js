@@ -9,6 +9,8 @@ module.exports = {
         secret: process.env.JWT_SECRET,
         expiresIn: process.env.JWT_EXPIRES_IN,
     },
+    adminEmail: process.env.ADMIN_EMAIL,
+    adminPsswd: process.env.ADMIN_PSSWD,
     MAX_LOGIN_ATTEMPTS: 3,
     REQ_NB_QUESTIONS: 10,
     NB_QUESTIONS: 50,

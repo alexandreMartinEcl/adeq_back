@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const config = require('../config');
 
 //const url = "https://adeq.rezoleo.fr";
 const url = "http://localhost:9000";
@@ -17,16 +18,16 @@ module.exports.checkAccountEmail = (email, token) => {
 */
         service: 'gmail',
         auth: {
-            user: "guiguiguidenden@gmail.com", // generated ethereal user
-            pass: "guiguiden" // generated ethereal password
+            user: config.adminEmail, // generated ethereal user
+            pass: config.adminPsswd // generated ethereal password
         }
     });
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Adeqwacy" <guiguiguidenden@@gmail.com>', // sender address
-        to: 'alexandre.martin.ecl@gmail.com', // list of receivers
-        subject: 'Hello ✔', // Subject line
+        from: '"Adeqwacy" <' + config.adminEmail + '>', // sender address
+        to: email, // list of receivers
+        subject: 'Validation du compte Adeqwacy', // Subject line
         text: 'Clique ici : ' + url + '/validate/?token=' + token, // plain text body
         html: '<a href="' + url + '/validate/?token=' + token + '">Clique ici</a>' // html body
     };
