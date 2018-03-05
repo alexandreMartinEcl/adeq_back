@@ -424,7 +424,7 @@ req.body : {ids: [String]}
 */
 module.exports.delDiscussions = (req, res) => {
     console.log(req.body)
-    Answers.remove({_id: req.body.ids},
+    Discussion.remove({_id: req.body.ids},
         (err) => {
         if (err) {
             return res.status(500).json(err);

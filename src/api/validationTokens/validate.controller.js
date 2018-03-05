@@ -7,11 +7,15 @@ module.exports.validate = (req, res) => {
     console.log("Req validation (validate()): ");
     console.log(req.query);
     Validation.findOneAndRemove({token: req.query.token},
-        (err, validation) => {
+            (err, validation) => {
         console.log("Validation searched :");
         console.log(validation);
         if (err) {
             return res.status(500).json(err);
+        }
+
+        if(!validation){
+            return res.status(500).json({"status": 'ok', 'response': 'Token already used or never existed'});
         }
 
         if(validation.type === "account"){
@@ -19,12 +23,10 @@ module.exports.validate = (req, res) => {
             // /!\ MOCHE, mais ne fonctionne aps sans ca (histoire de scope à régler)
             const userCtrler = require('../users/user.controller');
 
-            if(userCtrler.validateUser(validation.data)){
-                let oTemp = {'status': 'ok', 'responses': 'Account validated'};
-                res.status(200).json(oTemp);//answer);
-                return;
-            }
-        }
+            userCtrler.validateUser(validation.data);
+            let oTemp = {'status': 'ok', 'responses': 'Account validated'};
+            res.status(200).json(oTemp);
+        };
     });
 };
 
@@ -37,11 +39,6 @@ module.exports.createAuto = (validateObj) => {
     validation.save((err) => {
         console.log("Validation object being saved");
         console.log(validateObj);
-        if (err) {
-            return res.status(500).json(err);
-        }
-
-        res.status(201).json(validation)
     });
 
 };
