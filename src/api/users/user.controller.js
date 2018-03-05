@@ -42,10 +42,10 @@ module.exports.create_profile = (req, res) => {
                         // /!\ à cause du scope, ne va jamais trouver res defined :/
                         if (err) {
                             console.log(err);
-//                            return res.status(500).json(err);
+                            return res.status(500).json(err);
                         }
                 
-//                        res.status(201).json(user);
+                        res.status(201).json({'status': 'ok'});
                     });            
                 }
                 else{
