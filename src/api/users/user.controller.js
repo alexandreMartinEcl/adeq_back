@@ -35,7 +35,7 @@ module.exports.create_profile = (req, res) => {
                     console.log("Trying save user");
                     console.log(user);
 
-                    let validateObj = {'token': token, 'type': 'account', 'data': req.body.email}
+                    let validateObj = {'token': token, 'type': 'account', 'data': req.body.email.toLowerCase()}
                     valCtrler.createAuto(validateObj);
 
                     user.save((err) => {
