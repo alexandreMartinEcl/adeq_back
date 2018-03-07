@@ -20,6 +20,6 @@ module.exports = (app) => {
     app.use(serveStatic('./public'));
 
     app.get('/*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'public', 'index.html'));
+      res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
     });
 };
