@@ -12,7 +12,7 @@ const AnswerSchema = new mongoose.Schema({
     q7: String,
     q8: String,
     q9: String,
-    q10: String,
+/*    q10: String,
     q11: String,
     q12: String,
     q13: String,
@@ -802,6 +802,7 @@ const AnswerSchema = new mongoose.Schema({
     q797: String,
     q798: String,
     q799: String,
+*/
 });
 
 module.exports = mongoose.model('Answer', AnswerSchema);
