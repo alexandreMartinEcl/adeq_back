@@ -3,11 +3,9 @@ const Answers = require('./answer.model');
 module.exports = {};
 
 module.exports.update_answers = (req, res) => {
-    Answers.findOneAndUpdate({_id: req.user.pseudo},
+    Answers.findOneAndUpdate({_id: req.user.email},
         {
-            $push: {
-                answers: req.body.answers,
-            },
+            $update: req.body.answers,
         }, 
         {
             upsert: true,
