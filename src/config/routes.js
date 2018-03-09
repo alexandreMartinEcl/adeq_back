@@ -17,7 +17,7 @@ module.exports = (app) => {
 
     app.use('/admin', is_admin_authenticated(), require('../api/admin'));
 
-    app.use(serveStatic('./public'));
+    app.use(serveStatic(path.join(__dirname, '..', '..', 'public')));
 
     app.get('/*', (req, res) => {
       res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
