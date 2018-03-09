@@ -6,7 +6,7 @@ module.exports.update_answers = (req, res) => {
     Answers.findOneAndUpdate({_id: req.user.email},
         {
             $set: req.body.answers,
-        }, 
+        },
         {
             upsert: true,
         }, (err, answer) => {

@@ -50,7 +50,11 @@ const isAuthenticated = () => compose()
 const is_admin_authenticated = () => compose()
     .use(
         (req, res, next) => {
-            next();
+            if ( req.headers.admin_token === config.ADMIN_ACCESS_TOKEN ){
+                next();
+            } else {
+                res.status(201).json({ error: "Acess denied" });
+            }
         });
 /*
             if (req.query && req.query.access_token) {

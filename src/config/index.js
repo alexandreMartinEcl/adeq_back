@@ -15,4 +15,5 @@ module.exports = {
     MAX_LOGIN_ATTEMPTS: 3,
     REQ_NB_QUESTIONS: 10,
     NB_QUESTIONS: 723,
+    ADMIN_ACCESS_TOKEN: process.env.ADMIN_ACCESS_TOKEN,
 };
