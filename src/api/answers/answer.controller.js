@@ -5,16 +5,19 @@ module.exports = {};
 module.exports.update_answers = (req, res) => {
     Answers.findOneAndUpdate({_id: req.user.email},
         {
-            $update: req.body.answers,
+            $set: req.body.answers,
         }, 
         {
             upsert: true,
         }, (err, answer) => {
         if (err) {
+	    console.log(err);
             return res.status(500).json(err);
         }
 //        return "{'status': 'ok', 'respones': 'coming'}";
         let oTemp = {'status': 'ok', 'responses': 'coming'};
+        console.log("Update done");
+	console.log(answer);
         res.status(200).json(oTemp);//answer);
     });
 };
