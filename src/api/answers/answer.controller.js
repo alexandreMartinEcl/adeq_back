@@ -1,11 +1,16 @@
-const Answer = require('./answer.model');
+const Answers = require('./answer.model');
 
 module.exports = {};
 
 module.exports.update_answers = (req, res) => {
-    Answer.update({_id: req.user.pseudo},
+    Answers.findOneAndUpdate({_id: req.user.pseudo},
         {
-            $set: req.body.answers
+            $push: {
+                answers: req.body.answers,
+            },
+        }, 
+        {
+            upsert: true,
         }, (err, answer) => {
         if (err) {
             return res.status(500).json(err);
@@ -17,16 +22,16 @@ module.exports.update_answers = (req, res) => {
 };
 
 module.exports.create = (req, res) => {
-    const answer = new Answer(req.body);
+    const answers = new Answers(req.body);
 
-    answer.save((err) => {
+    answers.save((err) => {
         console.log("Reqbody");
         console.log(req.params);
         if (err) {
             return res.status(500).json(err);
         }
         //socketServer.emit('INVALIDATE_CHANNEL_LIST');
-        res.status(201).json(answer)
+        res.status(201).json(answers);
     });
 
 };

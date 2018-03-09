@@ -14,5 +14,5 @@ module.exports = {
     BASE_URL: process.env.BASE_URL,
     MAX_LOGIN_ATTEMPTS: 3,
     REQ_NB_QUESTIONS: 10,
-    NB_QUESTIONS: 50,
+    NB_QUESTIONS: 723,
 };
