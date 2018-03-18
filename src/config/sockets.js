@@ -12,20 +12,21 @@ const socketServer = {
         this.disc_namespace.on('connection', (socket) => {
 //        this.nsp.on('connection', (socket) => {
             console.log("New connection");
-            
+
             socket.on('room', function(room_name){
                 socket.join(room_name);
                 console.log("New socket joined room " + room_name);
-                console.log(socket);
-            });                
+//                console.log(socket);
+            });
 
             socket.on('disconnect', function(){
-//                this.io.to('default').emit('users-changed', {user: socket.nickname, event: 'left'});   
+//                this.io.to('default').emit('users-changed', {user: socket.nickname, event: 'left'});
+                console.log("Someone got disconnected");
                 this.nsp.to('default').emit('users-changed', {user: socket.nickname, event: 'left'});                
             });
         });
     },
-    emit : function (...args){
+    emit: function (...args){
 //        this.io.to('default').emit(...args);
 //        this.nsp.to('default').emit(...args);
         this.disc_namespace.emit(...args);

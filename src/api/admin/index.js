@@ -14,6 +14,7 @@ router.get('/evals', ctrler.getEvals);
 router.get('/questions', ctrler.getQuestions);
 router.get('/answers', ctrler.getAnswers);
 router.get('/validation_tokens', ctrler.getValidationTokens);
+router.get('/discussions', ctrler.getDiscussions);
 
 router.put('/users', ctrler.updateUser);
 router.put('/evals', ctrler.updateEval);

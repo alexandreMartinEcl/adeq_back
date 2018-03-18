@@ -322,6 +322,19 @@ module.exports.getValidationTokens = (req, res) => {
 };
 
 /*
+req.query : {anyField: [fieldType]}
+*/
+module.exports.getDiscussions = (req, res) => {
+    Discussion.find(req.query,
+        (err, disc) => {
+        if (err) {
+            return res.status(500).json(err);
+        }
+        res.status(201).json(disc);
+    });
+};
+
+/*
 req.body : {email: String, to_update: {fields: fieldTypes}}
 */
 module.exports.updateUser = (req, res) => {
